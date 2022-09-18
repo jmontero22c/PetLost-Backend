@@ -3,7 +3,6 @@ package com.petlost.petlost.Dao;
 import com.petlost.petlost.Dao.Interfaces.MascotaDao;
 import com.petlost.petlost.Models.Mascota;
 
-import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +17,7 @@ public class MascotaDaoImp implements MascotaDao{
     @Override
     public List<Mascota> getPet() {
         String query = "FROM Mascota";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Mascota.class).getResultList();
     }
     
     @Override

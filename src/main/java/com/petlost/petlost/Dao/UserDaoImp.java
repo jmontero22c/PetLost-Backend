@@ -19,7 +19,7 @@ public class UserDaoImp implements UsuarioDao {
         List<Usuario> users = null;
         String sql = "FROM Usuario";
         try{
-            users = entityManager.createQuery(sql).getResultList();
+            users = entityManager.createQuery(sql, Usuario.class).getResultList();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class UserDaoImp implements UsuarioDao {
     @Override
     public boolean loginUser(Usuario user) {
         String query = "FROM Usuario WHERE email = :email AND password = :password";
-        List<Usuario> answer = entityManager.createQuery(query)
+        List<Usuario> answer = entityManager.createQuery(query, Usuario.class)
                 .setParameter("email", user.getEmail())
                 .setParameter("password", user.getPassword())
                 .getResultList();

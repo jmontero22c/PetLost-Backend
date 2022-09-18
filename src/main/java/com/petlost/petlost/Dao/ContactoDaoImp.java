@@ -6,7 +6,7 @@ import com.petlost.petlost.Models.Mascota;
 import com.petlost.petlost.Models.Persona;
 import com.petlost.petlost.Models.Usuario;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class ContactoDaoImp implements ContactoDao {
         List<Contacto> contact = null;
         String sql = "FROM Contacto";
         try {
-            contact = entityManager.createQuery(sql).getResultList();
+            contact = entityManager.createQuery(sql, Contacto.class).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class ContactoDaoImp implements ContactoDao {
     public List<Contacto> getContactByIdPerson(int id){
         String query = "FROM Contacto WHERE id_person = :id";
         
-        List<Contacto> contact = entityManager.createQuery(query)
+        List<Contacto> contact = entityManager.createQuery(query, Contacto.class)
                         .setParameter("id", id)
                         .getResultList();
         return contact;

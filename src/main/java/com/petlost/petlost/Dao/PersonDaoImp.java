@@ -24,7 +24,7 @@ public class PersonDaoImp implements PersonaDao{
     
     public int getLastIdPerson(){
         String query = "FROM Persona";
-        List<Persona> personas = entityManager.createQuery(query).getResultList();
+        List<Persona> personas = entityManager.createQuery(query, Persona.class).getResultList();
         Persona last_person = personas.get(personas.size()-1);
         return last_person.getIdPerson();
     }
@@ -33,7 +33,7 @@ public class PersonDaoImp implements PersonaDao{
     @Transactional
     public List<Persona> getPeople() {
         String query = "FROM Persona";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Persona.class).getResultList();
     }
 
     @Override
@@ -64,12 +64,12 @@ public class PersonDaoImp implements PersonaDao{
     
     public List<Persona> storageUserSession(Usuario user) {
         String query = "FROM Usuario WHERE email = :email AND password = :password";
-        List<Usuario> answer = entityManager.createQuery(query)
+        List<Usuario> answer = entityManager.createQuery(query, Usuario.class)
                 .setParameter("email", user.getEmail())
                 .setParameter("password", user.getPassword())
                 .getResultList();
         
-        List<Persona> person = entityManager.createQuery("FROM Persona WHERE id = :id")
+        List<Persona> person = entityManager.createQuery("FROM Persona WHERE id = :id", Persona.class)
                 .setParameter("id", answer.get(0).getId_person())
                 .getResultList();
         return person;
@@ -77,12 +77,12 @@ public class PersonDaoImp implements PersonaDao{
     
     public List<Contacto> storageContactSession(Usuario user) {
         String query = "FROM Usuario WHERE email = :email AND password = :password";
-        List<Usuario> answer = entityManager.createQuery(query)
+        List<Usuario> answer = entityManager.createQuery(query, Usuario.class)
                 .setParameter("email", user.getEmail())
                 .setParameter("password", user.getPassword())
                 .getResultList();
         
-        List<Contacto> contact = entityManager.createQuery("FROM Contacto WHERE id_person = :id")
+        List<Contacto> contact = entityManager.createQuery("FROM Contacto WHERE id_person = :id", Contacto.class)
                 .setParameter("id", answer.get(0).getId_person())
                 .getResultList();
         return contact;
