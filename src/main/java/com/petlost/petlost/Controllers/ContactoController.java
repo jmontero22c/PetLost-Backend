@@ -3,7 +3,10 @@ package com.petlost.petlost.Controllers;
 import com.petlost.petlost.Dao.Interfaces.ContactoDao;
 import com.petlost.petlost.Models.Contacto;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +26,11 @@ public class ContactoController {
     @RequestMapping(value="contactos/add", method=RequestMethod.POST)
     private String createContact(@RequestBody Contacto contact){
         return contactDao.createContact(contact);
+    }
+
+    @RequestMapping(value = "contactar/{id}")
+    private Map<String,String> showInfoPetOwner(@PathVariable(value = "id") Long id){
+        return contactDao.showInfoPetOwner(id);
     }
     
     
