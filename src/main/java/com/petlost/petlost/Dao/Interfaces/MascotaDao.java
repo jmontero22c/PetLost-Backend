@@ -6,4 +6,5 @@ import java.util.List;
 public interface MascotaDao {
     public List<Mascota> getPet();
     public String createPet(Mascota pet);
+    public String deletePet(Long id);
 }

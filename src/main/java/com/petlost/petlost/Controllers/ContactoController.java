@@ -14,13 +14,13 @@ public class ContactoController {
     @Autowired
     public ContactoDao contactDao;
     
-    @RequestMapping(value="contacto", method=RequestMethod.GET)
+    @RequestMapping(value="contactos", method=RequestMethod.GET)
     private List<Contacto> getContact(){
         return contactDao.getContact();
     }
     
     
-    @RequestMapping(value="contacto", method=RequestMethod.POST)
+    @RequestMapping(value="contactos/add", method=RequestMethod.POST)
     private String createContact(@RequestBody Contacto contact){
         return contactDao.createContact(contact);
     }

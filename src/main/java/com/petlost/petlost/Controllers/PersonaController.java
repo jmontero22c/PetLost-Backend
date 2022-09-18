@@ -28,7 +28,7 @@ public class PersonaController {
         return personDao.getPeople();
     }
     
-    @RequestMapping(value="personas", method=RequestMethod.POST)
+    @RequestMapping(value="personas/add", method=RequestMethod.POST)
     public int createPerson(@RequestBody Persona person){
         return personDao.createUser(person);
     }
