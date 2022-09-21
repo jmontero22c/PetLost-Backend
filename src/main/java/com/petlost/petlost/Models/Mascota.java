@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.petlost.petlost.Models;
 
 import java.util.Date;
@@ -14,10 +10,6 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author jesus
- */
 
 @Entity
 @Table(name="mascota")

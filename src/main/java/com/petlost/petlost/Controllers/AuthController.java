@@ -13,6 +13,7 @@ public class AuthController {
     @Autowired
     private UsuarioDao userDao;
     
+    //Devuelve true si existe el usuario o false de lo contrario
     @RequestMapping(value="login", method = RequestMethod.POST)
     public boolean login(@RequestBody Usuario user){
         return userDao.loginUser(user);
