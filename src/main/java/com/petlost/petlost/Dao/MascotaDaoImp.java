@@ -1,6 +1,6 @@
 package com.petlost.petlost.Dao;
 
-import com.petlost.petlost.Dao.Interfaces.MascotaDao;
+import com.petlost.petlost.Dao.Interfaces.IMascotaDao;
 import com.petlost.petlost.Models.Mascota;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MascotaDaoImp implements MascotaDao{
+public class MascotaDaoImp implements IMascotaDao{
     @PersistenceContext
     EntityManager entityManager;
     

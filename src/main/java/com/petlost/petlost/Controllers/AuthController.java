@@ -1,6 +1,6 @@
 package com.petlost.petlost.Controllers;
 
-import com.petlost.petlost.Dao.Interfaces.UsuarioDao;
+import com.petlost.petlost.Dao.Interfaces.IUsuarioDao;
 import com.petlost.petlost.Models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
     @Autowired
-    private UsuarioDao userDao;
+    private IUsuarioDao userDao;
     
     //Devuelve true si existe el usuario o false de lo contrario
     @RequestMapping(value="login", method = RequestMethod.POST)

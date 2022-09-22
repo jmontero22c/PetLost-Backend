@@ -1,6 +1,6 @@
 package com.petlost.petlost.Controllers;
 
-import com.petlost.petlost.Dao.Interfaces.ContactoDao;
+import com.petlost.petlost.Dao.Interfaces.IContactoDao;
 import com.petlost.petlost.Models.Contacto;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ContactoController {
     @Autowired
-    public ContactoDao contactDao;
+    public IContactoDao contactDao;
     
     @RequestMapping(value="contactos", method=RequestMethod.GET)
     private List<Contacto> getContact(){
         return contactDao.getContact();
     }
     
-    
+    @RequestMapping(value = "contactos/{id}", method = RequestMethod.PUT)
+    private String updateContact(@PathVariable(value = "id") Long id, @RequestBody Contacto contact){
+        return contactDao.updateContact(contact, id);
+    }
+
     @RequestMapping(value="contactos/add", method=RequestMethod.POST)
     private String createContact(@RequestBody Contacto contact){
         return contactDao.createContact(contact);

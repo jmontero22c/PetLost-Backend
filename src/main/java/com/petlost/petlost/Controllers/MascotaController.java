@@ -2,7 +2,7 @@ package com.petlost.petlost.Controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.Converter;
-import com.petlost.petlost.Dao.Interfaces.MascotaDao;
+import com.petlost.petlost.Dao.Interfaces.IMascotaDao;
 import com.petlost.petlost.Models.Mascota;
 
 import lombok.SneakyThrows;
@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class MascotaController {
     @Autowired
-    MascotaDao mascotaDao;
+    IMascotaDao mascotaDao;
     
     @RequestMapping(value="mascotas")
     public List<Mascota> getPet(){

@@ -1,6 +1,6 @@
 package com.petlost.petlost.Dao;
 
-import com.petlost.petlost.Dao.Interfaces.ContactoDao;
+import com.petlost.petlost.Dao.Interfaces.IContactoDao;
 import com.petlost.petlost.Models.Contacto;
 import com.petlost.petlost.Models.Mascota;
 import com.petlost.petlost.Models.Persona;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public class ContactoDaoImp implements ContactoDao {
+public class ContactoDaoImp implements IContactoDao {
     @PersistenceContext
     EntityManager entityManager;
     
@@ -38,6 +38,26 @@ public class ContactoDaoImp implements ContactoDao {
     public String createContact(Contacto contact) {
         entityManager.merge(contact);
         return "Contacto Creado";
+    }
+
+    @Override
+    @Transactional
+    public String updateContact(Contacto contacto, Long id){
+        try {
+            String sql ="FROM Contacto WHERE id_person = :id";
+            Contacto contact = entityManager.createQuery(sql, Contacto.class)
+            .setParameter("id", id.intValue()).getResultList().get(0);
+            
+            contact.setAddress(contacto.getAddress());
+            contact.setCity(contacto.getCity());
+            contact.setPhone(contacto.getPhone());
+            contact.setId_person(id.intValue());
+            
+            entityManager.merge(contact);
+            return "Actualizado con éxito";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     public List<Contacto> getContactByIdPerson(int id){

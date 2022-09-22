@@ -1,6 +1,6 @@
 package com.petlost.petlost.Dao;
 
-import com.petlost.petlost.Dao.Interfaces.PersonaDao;
+import com.petlost.petlost.Dao.Interfaces.IPersonaDao;
 import com.petlost.petlost.Models.Contacto;
 import com.petlost.petlost.Models.Persona;
 import com.petlost.petlost.Models.Usuario;
@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PersonDaoImp implements PersonaDao{
+public class PersonDaoImp implements IPersonaDao{
     @PersistenceContext
     EntityManager entityManager;
     
@@ -52,6 +52,7 @@ public class PersonDaoImp implements PersonaDao{
     public Persona updatePerson(Persona persona, Long id){
         try {
             Persona person = entityManager.find(Persona.class, id.intValue());
+            person.setNames(persona.getNames());
             person.setLastnames(persona.getLastnames());
             entityManager.merge(person);
             entityManager.getTransaction().commit();
@@ -62,29 +63,29 @@ public class PersonDaoImp implements PersonaDao{
         
     }
     
-    public List<Persona> storageUserSession(Usuario user) {
-        String query = "FROM Usuario WHERE email = :email AND password = :password";
-        List<Usuario> answer = entityManager.createQuery(query, Usuario.class)
-                .setParameter("email", user.getEmail())
-                .setParameter("password", user.getPassword())
-                .getResultList();
+    public List<Persona> getPersonInSession(Usuario user) {
+        List<Usuario> contact_in_session = getUserInSesssion(user);
         
         List<Persona> person = entityManager.createQuery("FROM Persona WHERE id = :id", Persona.class)
-                .setParameter("id", answer.get(0).getId_person())
+                .setParameter("id", contact_in_session.get(0).getId_person())
                 .getResultList();
         return person;
     }
     
-    public List<Contacto> storageContactSession(Usuario user) {
+    public List<Contacto> getContactInSession(Usuario user) {
+        List<Usuario> user_in_session = getUserInSesssion(user);
+        List<Contacto> contact = entityManager.createQuery("FROM Contacto WHERE id_person = :id", Contacto.class)
+                .setParameter("id", user_in_session.get(0).getId_person())
+                .getResultList();
+        return contact;
+    }
+
+    public List<Usuario> getUserInSesssion(Usuario user){
         String query = "FROM Usuario WHERE email = :email AND password = :password";
-        List<Usuario> answer = entityManager.createQuery(query, Usuario.class)
+        List<Usuario> user_in_session = entityManager.createQuery(query, Usuario.class)
                 .setParameter("email", user.getEmail())
                 .setParameter("password", user.getPassword())
                 .getResultList();
-        
-        List<Contacto> contact = entityManager.createQuery("FROM Contacto WHERE id_person = :id", Contacto.class)
-                .setParameter("id", answer.get(0).getId_person())
-                .getResultList();
-        return contact;
+        return user_in_session;
     }
 }

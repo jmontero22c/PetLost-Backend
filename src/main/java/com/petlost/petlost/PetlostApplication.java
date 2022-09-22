@@ -20,6 +20,8 @@ public class PetlostApplication {
 			public void addCorsMappings(CorsRegistry registry){
 				registry.addMapping("/mascotas").allowedOrigins("*");
 				registry.addMapping("/mascotas/add").allowedOrigins("*");
+				registry.addMapping("/personas/info").allowedOrigins("*");
+				registry.addMapping("/contactos/info").allowedOrigins("*");
 				registry.addMapping("/login").allowedOrigins("*");
 			}
 		};

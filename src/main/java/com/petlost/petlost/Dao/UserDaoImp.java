@@ -1,6 +1,6 @@
 package com.petlost.petlost.Dao;
 
-import com.petlost.petlost.Dao.Interfaces.UsuarioDao;
+import com.petlost.petlost.Dao.Interfaces.IUsuarioDao;
 import com.petlost.petlost.Models.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Transactional
-public class UserDaoImp implements UsuarioDao {
+public class UserDaoImp implements IUsuarioDao {
     @PersistenceContext
     EntityManager entityManager;
     
