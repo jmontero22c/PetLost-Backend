@@ -7,22 +7,24 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario {
-    
+
     @Id
-    @Getter @Setter @Column(name="fk_idPersona")
+    @Getter
+    @Setter
+    @Column(name = "fk_idPersona")
     private int id_person;
-    
-    
-    @Getter @Setter @Column(name="correo")
+
+    @Getter
+    @Setter
+    @Column(name = "correo")
     private String email;
-    
-    
-    @Getter @Setter @Column(name="contraseña")
+
+    @Getter
+    @Setter
+    @Column(name = "contrasenia")
     private String password;
 
-    
 }

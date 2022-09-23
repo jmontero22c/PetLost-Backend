@@ -10,31 +10,49 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
-@Table(name="mascota")
+@Table(name = "mascota")
 public class Mascota {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Setter @Getter @Column(name="idMascota")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
+    @Column(name = "idMascota")
     private int id;
-    
-    @Setter @Getter @Column(name="Nombre")
+
+    @Setter
+    @Getter
+    @Column(name = "nombre")
     private String name;
-    
-    @Setter @Getter @Column(name="fotografia")
+
+    @Setter
+    @Getter
+    @Column(name = "fotografia")
     private String photo;
-    
-    @Setter @Getter @Column(name="fechaperdida")
+
+    @Setter
+    @Getter
+    @Column(name = "fechaperdida")
     private Date dateLost;
-    
-    @Setter @Getter @Column(name="lugarperdida")
+
+    @Setter
+    @Getter
+    @Column(name = "lugarperdida")
     private String placeLost;
-    
-    @Setter @Getter @Column(name="fk_idPersona")
+
+    @Setter
+    @Getter
+    @Column(name = "fk_idPersona")
     private int id_person;
-    
-    @Setter @Getter @Column(name="fk_tipoMascota")
+
+    @Setter
+    @Getter
+    @Column(name = "fk_tipoMascota")
     private int id_kindpet;
-    
+
+    @Setter
+    @Getter
+    @Column(name = "detalles")
+    private String details;
+
 }

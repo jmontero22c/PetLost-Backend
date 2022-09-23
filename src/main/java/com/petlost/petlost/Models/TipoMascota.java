@@ -10,14 +10,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="tipomascota")
+@Table(name = "tipomascota")
 public class TipoMascota {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Setter @Getter @Column(name="idtipoMascota")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
+    @Getter
+    @Column(name = "idtipoMascota")
     private int id;
-    
-    @Setter @Getter @Column(name="descripcion")
+
+    @Setter
+    @Getter
+    @Column(name = "descripMascota")
     private String description;
-    
+
 }

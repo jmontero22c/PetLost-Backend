@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class MascotaController {
     @Autowired
@@ -47,8 +46,8 @@ public class MascotaController {
     }
 
     @Transactional
-    @RequestMapping(value="mascotas/del/{id}", method = RequestMethod.DELETE)
-    public String deletePet(@PathVariable(value="id") Long idPet){
+    @RequestMapping(value = "mascotas/del/{id}", method = RequestMethod.DELETE)
+    public String deletePet(@PathVariable(value = "id") Long idPet) {
         return mascotaDao.deletePet(idPet);
     }
 }
