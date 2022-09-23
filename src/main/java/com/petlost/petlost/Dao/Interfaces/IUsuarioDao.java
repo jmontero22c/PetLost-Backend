@@ -8,5 +8,5 @@ public interface IUsuarioDao {
     public String createUser(Usuario user);
     public void deleteUser(Long id);
     public boolean loginUser(Usuario user);
-
+    public String updateUser(Usuario user, Long id);
 }

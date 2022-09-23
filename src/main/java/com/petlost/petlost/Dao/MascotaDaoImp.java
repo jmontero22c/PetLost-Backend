@@ -3,6 +3,9 @@ package com.petlost.petlost.Dao;
 import com.petlost.petlost.Dao.Interfaces.IMascotaDao;
 import com.petlost.petlost.Models.Mascota;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,8 +26,15 @@ public class MascotaDaoImp implements IMascotaDao{
     @Override
     @Transactional
     public String createPet(Mascota pet){
-        entityManager.merge(pet);
-        return "Mascota Publicada";
+        try {
+            entityManager.merge(pet);
+            return "Mascota Publicada";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        
+        
     }
 
     @Override

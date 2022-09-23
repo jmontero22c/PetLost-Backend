@@ -40,6 +40,20 @@ public class UserDaoImp implements IUsuarioDao {
     }
 
     @Override
+    @Transactional
+    public String updateUser(Usuario usuario, Long id){
+        try {
+            Usuario user = entityManager.find(Usuario.class, id.intValue());
+            user.setEmail(usuario.getEmail());
+            user.setPassword(usuario.getPassword());
+            entityManager.merge(user);
+            return "Usuario actualizado";
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+
+    @Override
     public void deleteUser(Long id) {
         
     }

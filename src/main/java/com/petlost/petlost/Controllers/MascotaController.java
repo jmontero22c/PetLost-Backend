@@ -1,29 +1,19 @@
 package com.petlost.petlost.Controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.Converter;
 import com.petlost.petlost.Dao.Interfaces.IMascotaDao;
 import com.petlost.petlost.Models.Mascota;
 
-import lombok.SneakyThrows;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -53,7 +43,6 @@ public class MascotaController {
             }
             
         }*/
-
         return mascotaDao.createPet(pet);
     }
 
