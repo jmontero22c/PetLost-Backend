@@ -31,4 +31,9 @@ public class UsuarioController {
     public String updateUser(@RequestBody Usuario user, @PathVariable Long id){
         return userDao.updateUser(user, id);
     }
+
+    @RequestMapping(value="usuarios/id", method=RequestMethod.POST)
+    public int getIdUser(@RequestBody Usuario user){
+        return userDao.getIdUser(user);
+    }
 }

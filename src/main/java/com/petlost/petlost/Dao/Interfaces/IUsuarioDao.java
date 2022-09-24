@@ -9,4 +9,5 @@ public interface IUsuarioDao {
     public void deleteUser(Long id);
     public boolean loginUser(Usuario user);
     public String updateUser(Usuario user, Long id);
+    public int getIdUser(Usuario user);
 }

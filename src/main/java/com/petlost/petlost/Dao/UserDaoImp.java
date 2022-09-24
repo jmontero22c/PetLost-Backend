@@ -68,4 +68,12 @@ public class UserDaoImp implements IUsuarioDao {
         return !answer.isEmpty();
     }
     
+    public int getIdUser(Usuario user) {
+        String query = "FROM Usuario WHERE email = :email AND password = :password";
+        List<Usuario> answer = entityManager.createQuery(query, Usuario.class)
+                .setParameter("email", user.getEmail())
+                .setParameter("password", user.getPassword())
+                .getResultList();
+        return answer.get(0).getId_person();
+    }
 }
