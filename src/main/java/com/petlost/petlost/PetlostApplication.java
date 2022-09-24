@@ -23,6 +23,7 @@ public class PetlostApplication {
 				registry.addMapping("/personas/info").allowedOrigins("*");
 				registry.addMapping("/contactos/info").allowedOrigins("*");
 				registry.addMapping("/login").allowedOrigins("*");
+				registry.addMapping("/mascotasxperson").allowedOrigins("*");		
 			}
 		};
 	}

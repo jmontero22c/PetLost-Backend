@@ -2,10 +2,8 @@ package com.petlost.petlost.Dao;
 
 import com.petlost.petlost.Dao.Interfaces.IMascotaDao;
 import com.petlost.petlost.Models.Mascota;
+import com.petlost.petlost.Models.Usuario;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,9 +30,7 @@ public class MascotaDaoImp implements IMascotaDao{
         } catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();
-        }
-        
-        
+        }       
     }
 
     @Override
@@ -47,5 +43,18 @@ public class MascotaDaoImp implements IMascotaDao{
             return e.getMessage();
         }
         
+    }
+
+    public List<Mascota> getPetsxPerson(Usuario user){
+        String query = "FROM Usuario WHERE email = :email AND password = :password";
+        Usuario usuario = entityManager.createQuery(query,Usuario.class)
+                            .setParameter("email", user.getEmail())
+                            .setParameter("password", user.getPassword())
+                            .getResultList().get(0);
+        
+        String queryMascota = "FROM Mascota WHERE fk_idPersona = :id";
+        return entityManager.createQuery(queryMascota, Mascota.class)
+                            .setParameter("id", usuario.getId_person())
+                            .getResultList();
     }
 }

@@ -2,7 +2,7 @@ package com.petlost.petlost.Controllers;
 
 import com.petlost.petlost.Dao.Interfaces.IMascotaDao;
 import com.petlost.petlost.Models.Mascota;
-
+import com.petlost.petlost.Models.Usuario;
 
 import java.util.List;
 
@@ -26,22 +26,7 @@ public class MascotaController {
     }
     
     @RequestMapping(value="mascotas/add", method=RequestMethod.POST)
-    public String createPet(@RequestBody Mascota pet/*, @RequestParam(defaultValue = "") MultipartFile image */){
-        /*if(!image.isEmpty()){
-            Path imageDirectory = Paths.get("http://127.0.0.1:5500/assets/img");
-            String pathAbsolute = imageDirectory.toFile().getAbsolutePath();
-
-            try {
-                byte[] bytesImg = image.getBytes();    
-                Path fullPath = Paths.get(pathAbsolute + "/" + image.getOriginalFilename());
-                Files.write(fullPath, bytesImg);
-
-                pet.setPhoto(image.getOriginalFilename());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-        }*/
+    public String createPet(@RequestBody Mascota pet){
         return mascotaDao.createPet(pet);
     }
 
@@ -49,5 +34,10 @@ public class MascotaController {
     @RequestMapping(value = "mascotas/del/{id}", method = RequestMethod.DELETE)
     public String deletePet(@PathVariable(value = "id") Long idPet) {
         return mascotaDao.deletePet(idPet);
+    }
+
+    @RequestMapping(value="mascotasxperson", method=RequestMethod.POST)
+    public List<Mascota> updateUser(@RequestBody Usuario user){
+        return mascotaDao.getPetsxPerson(user);
     }
 }
