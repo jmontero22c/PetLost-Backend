@@ -36,6 +36,10 @@ public class PersonDaoImp implements IPersonaDao{
         return entityManager.createQuery(query, Persona.class).getResultList();
     }
 
+    public Persona getPeopleById(Long id){
+        return entityManager.find(Persona.class, id.intValue());
+    }
+
     @Override
     @Transactional
     public void deletePerson(Long id) {

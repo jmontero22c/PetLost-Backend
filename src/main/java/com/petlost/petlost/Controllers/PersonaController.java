@@ -29,6 +29,12 @@ public class PersonaController {
     public List<Persona> getPeople(){
         return personDao.getPeople();
     }
+
+    @CrossOrigin("*")
+    @RequestMapping(value="personas/{id}", method=RequestMethod.GET)
+    public Persona getPeopleById(@PathVariable Long id){
+        return personDao.getPeopleById(id);
+    }
     
     @RequestMapping(value="personas/add", method=RequestMethod.POST)
     public int createPerson(@RequestBody Persona person){

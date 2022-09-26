@@ -18,4 +18,6 @@ public interface IPersonaDao {
     public List<Contacto> getContactInSession(Usuario user);
     
     public Persona updatePerson(Persona person, Long id);
+
+    public Persona getPeopleById(Long id);
 }
