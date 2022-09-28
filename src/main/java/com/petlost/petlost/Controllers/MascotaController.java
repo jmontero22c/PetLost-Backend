@@ -42,4 +42,10 @@ public class MascotaController {
     public List<Mascota> updateUser(@RequestBody Usuario user){
         return mascotaDao.getPetsxPerson(user);
     }
+
+    @RequestMapping(value = "/mascotas/kind/{id}", method = RequestMethod.GET)
+    @CrossOrigin("*")
+    public List<Mascota> getPetsByKind(@PathVariable Long id){
+        return mascotaDao.getPetsByKind(id);
+    }
 }

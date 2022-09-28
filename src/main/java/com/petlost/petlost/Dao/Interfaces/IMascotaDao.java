@@ -10,4 +10,5 @@ public interface IMascotaDao {
     public String createPet(Mascota pet);
     public String deletePet(Long id);
     public List<Mascota> getPetsxPerson(Usuario user);
+    public List<Mascota> getPetsByKind(Long id);
 }

@@ -57,4 +57,13 @@ public class MascotaDaoImp implements IMascotaDao{
                             .setParameter("id", usuario.getId_person())
                             .getResultList();
     }
+
+    public List<Mascota> getPetsByKind(Long id){
+        String query = "FROM Mascota WHERE id_kindpet = :id";
+        List<Mascota> pets = entityManager.createQuery(query, Mascota.class)
+                            .setParameter("id", id.intValue())
+                            .getResultList();
+
+        return pets;
+    }
 }
